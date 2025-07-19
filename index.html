@@ -298,17 +298,13 @@
                     </button>
                 </div>
 
-                <!-- AI Project Explainer -->
+                <!-- AI Interview Prep -->
                 <div class="card ai-card rounded-lg p-6">
-                    <h3 class="text-2xl font-bold text-white mb-4">✨ AI Project Explainer</h3>
-                    <p class="mb-4 text-gray-400">Select a project and the AI will provide a detailed explanation of its technical complexity and business value.</p>
-                    <select id="project-select" class="w-full p-3 rounded-md bg-gray-800 border border-gray-600 focus:ring-amber-500 focus:border-amber-500 text-gray-300">
-                        <option value="WebCam Racer">WebCam Racer</option>
-                        <option value="Secure Voting System">Secure Voting System</option>
-                        <option value="Autonomous Drones">Autonomous Drones</option>
-                    </select>
-                     <button id="explain-project-btn" class="ai-button w-full mt-4 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center">
-                        <span class="btn-text">Explain Project</span>
+                    <h3 class="text-2xl font-bold text-white mb-4">✨ AI Interview Prep</h3>
+                    <p class="mb-4 text-gray-400">Enter a technical skill or concept, and the AI will generate sample interview questions to test my knowledge.</p>
+                    <input type="text" id="interview-topic" class="w-full p-3 rounded-md bg-gray-800 border border-gray-600 focus:ring-amber-500 focus:border-amber-500 text-gray-300" placeholder="e.g., Java, REST APIs, Data Structures...">
+                     <button id="generate-questions-btn" class="ai-button w-full mt-4 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center">
+                        <span class="btn-text">Generate Questions</span>
                         <div class="loading-spinner w-5 h-5 border-2 border-gray-500 rounded-full ml-3 hidden"></div>
                     </button>
                 </div>
@@ -425,9 +421,9 @@
 
         // --- AI Assistant Logic ---
         const generateLetterBtn = document.getElementById('generate-letter-btn');
-        const explainProjectBtn = document.getElementById('explain-project-btn');
+        const generateQuestionsBtn = document.getElementById('generate-questions-btn');
         const jobDescriptionInput = document.getElementById('job-description');
-        const projectSelect = document.getElementById('project-select');
+        const interviewTopicInput = document.getElementById('interview-topic');
         
         // Modal elements
         const aiModal = document.getElementById('ai-modal');
@@ -531,24 +527,22 @@
             showModal("Generated Cover Letter", generatedText);
         });
 
-        explainProjectBtn.addEventListener('click', async () => {
-            const selectedProjectTitle = projectSelect.value;
-            const projectData = candidateProfile.projects[selectedProjectTitle];
+        generateQuestionsBtn.addEventListener('click', async () => {
+            const topic = interviewTopicInput.value.trim();
+            if (!topic) {
+                showModal("Error", "Please enter a technical topic first.");
+                return;
+            }
 
             const prompt = `
-                As a senior software engineer, please provide a detailed explanation of the project titled "${selectedProjectTitle}".
+                Based on the profile of a software developer candidate named ${candidateProfile.name}, please act as a senior technical interviewer.
 
-                Here is the project information:
-                - Description: ${projectData.description}
-                - Key Contribution/Achievement: ${projectData.achievement || projectData.contribution}
+                The candidate's skills include: ${candidateProfile.skills.join(', ')}.
 
-                In your explanation, cover the following points in a clear, structured manner:
-                1.  **Technical Complexity:** Describe the technical challenges involved. For example, what makes real-time gesture recognition, secure biometric systems, or autonomous pathfinding difficult?
-                2.  **Business Value:** Explain why a company would find this project impressive. What business problems does it solve (e.g., user engagement, security, automation, efficiency)?
-                3.  **Skills Demonstrated:** List the key technical and soft skills that this project clearly demonstrates.
+                Generate 3-4 insightful technical interview questions about the following topic: "${topic}". The questions should be appropriate for a talented university student and should test for a solid understanding of fundamental concepts.
             `;
-            const generatedText = await callGemini(prompt, explainProjectBtn);
-            showModal(`Project Deep Dive: ${selectedProjectTitle}`, generatedText);
+            const generatedText = await callGemini(prompt, generateQuestionsBtn);
+            showModal(`Sample Interview Questions: ${topic}`, generatedText);
         });
         
         // --- Modal Logic ---
