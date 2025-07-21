@@ -209,6 +209,43 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Soft Skills Section -->
+        <section id="soft-skills" class="py-20 fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center section-title mb-12">Professional & Soft Skills</h2>
+            <div class="max-w-4xl mx-auto card p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-gray-300">
+                    <div class="flex items-center">
+                        <i data-lucide="users" class="w-5 h-5 mr-3 accent-text"></i>
+                        <div>
+                            <h4 class="font-semibold text-white">Collaborative Problem-Solving</h4>
+                            <p class="text-sm">Excels in team environments, bridging technical and non-technical gaps to achieve project goals.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-lucide="message-circle" class="w-5 h-5 mr-3 accent-text"></i>
+                        <div>
+                            <h4 class="font-semibold text-white">Technical Communication</h4>
+                            <p class="text-sm">Effectively translates complex technical concepts into clear, actionable insights for diverse audiences.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-lucide="trending-up" class="w-5 h-5 mr-3 accent-text"></i>
+                        <div>
+                            <h4 class="font-semibold text-white">Adaptable & Proactive</h4>
+                            <p class="text-sm">Quickly learns new technologies and takes initiative to drive projects forward and find innovative solutions.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-lucide="target" class="w-5 h-5 mr-3 accent-text"></i>
+                        <div>
+                            <h4 class="font-semibold text-white">Client-Focused Development</h4>
+                            <p class="text-sm">Understands business needs and user requirements to build products that deliver tangible value.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Projects Section -->
         <section id="projects" class="py-20 fade-in-section">
@@ -365,7 +402,8 @@
                     <i data-lucide="phone" class="w-6 h-6 mr-2"></i>
                     +91 73960 00511
                 </a>
-                <a href="https://www.linkedin.com/in/hasan-khan/" target="_blank" rel="noopener noreferrer" class="link-hover text-lg flex items-center">
+                <!-- CORRECTED LINKEDIN URL -->
+                <a href="https://linkedin.com/in/hasan-khan-316110255" target="_blank" rel="noopener noreferrer" class="link-hover text-lg flex items-center">
                     <i data-lucide="linkedin" class="w-6 h-6 mr-2"></i>
                     LinkedIn
                 </a>
@@ -431,12 +469,18 @@
         const modalContent = document.getElementById('modal-content');
         const modalCloseBtn = document.getElementById('modal-close-btn');
 
+        // --- IMPORTANT: AI ASSISTANT SETUP ---
+        // Your API key has been added below. This feature is now fully functional.
+        const GEMINI_API_KEY = "AIzaSyBJngfVIGjKb_ZqOa4eAF5MUEcXivFmdwE";
+        // ------------------------------------
+
         // --- Candidate Profile Data (Extracted from the page for the AI) ---
         const candidateProfile = {
             name: "Pathan Mahmood Hasan Khan",
             title: "Full Stack Developer",
             summary: "A results-driven developer committed to delivering high-impact solutions through innovative and user-centric design. Adept at managing projects, solving complex problems, and collaborating seamlessly across teams. Proficient in leveraging cutting-edge technologies and best practices to optimize processes and elevate overall product performance.",
-            skills: ["C/C++", "Python", "Java", "Go", "SQL", "MERN Stack", "RESTful APIs", "Git", "GitLab", "Jira", "VS Code", "Networking", "Virtualization", "KVM", "BASH Scripting", "Wireshark", "GRE", "DPDK", "YANG"],
+            technical_skills: ["C/C++", "Python", "Java", "Go", "SQL", "MERN Stack", "RESTful APIs", "Git", "GitLab", "Jira", "VS Code", "Networking", "Virtualization", "KVM", "BASH Scripting", "Wireshark", "GRE", "DPDK", "YANG"],
+            soft_skills: ["Collaborative Problem-Solving", "Technical Communication", "Adaptable & Proactive", "Client-Focused Development"],
             projects: {
                 "WebCam Racer": {
                     description: "Engineered and evaluated an AI-powered game controlled by real-time facial gestures, utilizing MediaPipe's Face Mesh API for hands-free interaction.",
@@ -455,6 +499,15 @@
 
         // --- Gemini API Call Function ---
         async function callGemini(prompt, button) {
+            // Check for API Key
+            if (GEMINI_API_KEY === "YOUR_GOOGLE_AI_API_KEY_HERE" || !GEMINI_API_KEY) {
+                showModal(
+                    "API Key Required", 
+                    "To enable this AI feature, you need to add a free Google AI API key.\n\n1. Go to Google AI Studio to get your key.\n2. Open this HTML file in a text editor.\n3. Paste your key into the 'GEMINI_API_KEY' variable near the top of the <script> section."
+                );
+                return null;
+            }
+
             const btnText = button.querySelector('.btn-text');
             const spinner = button.querySelector('.loading-spinner');
             
@@ -462,8 +515,7 @@
             spinner.classList.remove('hidden');
             button.disabled = true;
 
-            const apiKey = ""; // API key will be injected by the environment
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
             
             const payload = {
                 contents: [{ role: "user", parts: [{ text: prompt }] }]
@@ -477,7 +529,8 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error(`API error: ${response.statusText}`);
+                    const errorData = await response.json();
+                    throw new Error(`API error (${response.status}): ${errorData.error.message}`);
                 }
 
                 const result = await response.json();
@@ -512,10 +565,11 @@
             const prompt = `
                 My name is ${candidateProfile.name}. I am a ${candidateProfile.title}.
                 My professional summary: ${candidateProfile.summary}
-                My key skills are: ${candidateProfile.skills.join(', ')}.
+                My key technical skills are: ${candidateProfile.technical_skills.join(', ')}.
+                My key soft skills are: ${candidateProfile.soft_skills.join(', ')}.
                 My projects include: WebCam Racer (${candidateProfile.projects["WebCam Racer"].achievement}), Secure Voting System (${candidateProfile.projects["Secure Voting System"].contribution}), and Autonomous Drones (${candidateProfile.projects["Autonomous Drones"].contribution}).
 
-                Based on my profile, please write a professional and enthusiastic cover letter for the following job description. Connect my specific skills and project experiences to the requirements in the job description. Keep it concise, impactful, and address it to the "Hiring Team".
+                Based on my profile, please write a professional and enthusiastic cover letter for the following job description. Connect my specific skills (both technical and soft) and project experiences to the requirements in the job description. Keep it concise, impactful, and address it to the "Hiring Team".
 
                 Job Description:
                 ---
@@ -524,7 +578,7 @@
             `;
 
             const generatedText = await callGemini(prompt, generateLetterBtn);
-            showModal("Generated Cover Letter", generatedText);
+            if (generatedText) showModal("Generated Cover Letter", generatedText);
         });
 
         generateQuestionsBtn.addEventListener('click', async () => {
@@ -537,12 +591,13 @@
             const prompt = `
                 Based on the profile of a software developer candidate named ${candidateProfile.name}, please act as a senior technical interviewer.
 
-                The candidate's skills include: ${candidateProfile.skills.join(', ')}.
+                The candidate's technical skills include: ${candidateProfile.technical_skills.join(', ')}.
+                The candidate's soft skills include: ${candidateProfile.soft_skills.join(', ')}.
 
                 Generate 3-4 insightful technical interview questions about the following topic: "${topic}". The questions should be appropriate for a talented university student and should test for a solid understanding of fundamental concepts.
             `;
             const generatedText = await callGemini(prompt, generateQuestionsBtn);
-            showModal(`Sample Interview Questions: ${topic}`, generatedText);
+            if(generatedText) showModal(`Sample Interview Questions: ${topic}`, generatedText);
         });
         
         // --- Modal Logic ---
