@@ -83,35 +83,6 @@
             background-color: #F3EAD3;
             color: #0a0e1a;
         }
-        /* AI Assistant Styles */
-        .ai-card {
-            background-color: rgba(17, 24, 39, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-        .ai-button {
-            background-color: #d97706; /* Amber-600 */
-            transition: background-color 0.3s ease;
-        }
-        .ai-button:hover {
-            background-color: #b45309; /* Amber-700 */
-        }
-        .ai-button:disabled {
-            background-color: #4b5563;
-            cursor: not-allowed;
-        }
-        .loading-spinner {
-            border-top-color: #F3EAD3;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        /* Modal Styles */
-        .modal-backdrop {
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-        }
     </style>
 </head>
 <body class="antialiased">
@@ -121,11 +92,12 @@
         <div class="container mx-auto px-6 py-3">
             <div class="flex items-center justify-between">
                 <a href="#" class="logo">HK</a>
-                <nav class="hidden md:flex space-x-8">
+                <nav class="hidden md:flex items-center space-x-4 lg:space-x-6">
                     <a href="#about" class="link-hover">About</a>
                     <a href="#skills" class="link-hover">Skills</a>
+                    <a href="#soft-skills" class="link-hover">Soft Skills</a>
+                    <a href="#strengths" class="link-hover">Key Strengths</a>
                     <a href="#projects" class="link-hover">Projects</a>
-                    <a href="#ai-assistant" class="link-hover">AI Assistant</a>
                     <a href="#certifications" class="link-hover">Certifications</a>
                     <a href="#education" class="link-hover">Education</a>
                     <a href="#contact" class="link-hover">Contact</a>
@@ -139,8 +111,9 @@
         <div id="mobile-menu" class="hidden md:hidden bg-gray-900/90 backdrop-blur-sm">
             <a href="#about" class="block py-2 px-6 text-center link-hover">About</a>
             <a href="#skills" class="block py-2 px-6 text-center link-hover">Skills</a>
+            <a href="#soft-skills" class="block py-2 px-6 text-center link-hover">Soft Skills</a>
+            <a href="#strengths" class="block py-2 px-6 text-center link-hover">Key Strengths</a>
             <a href="#projects" class="block py-2 px-6 text-center link-hover">Projects</a>
-            <a href="#ai-assistant" class="block py-2 px-6 text-center link-hover">AI Assistant</a>
             <a href="#certifications" class="block py-2 px-6 text-center link-hover">Certifications</a>
             <a href="#education" class="block py-2 px-6 text-center link-hover">Education</a>
             <a href="#contact" class="block py-2 px-6 text-center link-hover">Contact</a>
@@ -152,9 +125,9 @@
         <!-- Hero Section -->
         <section id="hero" class="text-center py-20 fade-in-section">
             <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Pathan Mahmood Hasan Khan</h1>
-            <p class="text-xl md:text-2xl accent-text mb-8">Full Stack Developer</p>
+            <p class="text-xl md:text-2xl accent-text mb-8">Aspiring Software Developer & Problem Solver</p>
             <p class="max-w-3xl mx-auto text-lg leading-relaxed mb-10">
-                A results-driven developer committed to delivering high-impact solutions through innovative and user-centric design. Adept at managing projects, solving complex problems, and collaborating seamlessly across teams.
+                A passionate Computer Science student dedicated to building impactful solutions and solving complex problems. Eager to apply my skills in a real-world setting and continuously learn and grow as a developer.
             </p>
             <div class="flex justify-center space-x-4">
                 <a href="#contact" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105">Get In Touch</a>
@@ -188,12 +161,12 @@
                     </ul>
                 </div>
                 <div class="card p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-white mb-4">Full-Stack & DevOps</h3>
+                    <h3 class="text-xl font-semibold text-white mb-4">Web & Development Tools</h3>
                     <ul class="space-y-2">
-                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 accent-text"></i>MERN Stack</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 accent-text"></i>HTML, CSS, JavaScript</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 accent-text"></i>MERN Stack (Learning)</li>
                         <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 accent-text"></i>RESTful APIs</li>
                         <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 accent-text"></i>Git & GitLab</li>
-                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 accent-text"></i>Jira</li>
                         <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 accent-text"></i>VS Code</li>
                     </ul>
                 </div>
@@ -209,40 +182,68 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Soft Skills Section -->
         <section id="soft-skills" class="py-20 fade-in-section">
             <h2 class="text-3xl md:text-4xl font-bold text-center section-title mb-12">Professional & Soft Skills</h2>
             <div class="max-w-4xl mx-auto card p-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-gray-300">
-                    <div class="flex items-center">
-                        <i data-lucide="users" class="w-5 h-5 mr-3 accent-text"></i>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 text-gray-300">
+                    <div class="flex items-start">
+                        <i data-lucide="users" class="w-6 h-6 mr-4 mt-1 accent-text flex-shrink-0"></i>
                         <div>
-                            <h4 class="font-semibold text-white">Collaborative Problem-Solving</h4>
-                            <p class="text-sm">Excels in team environments, bridging technical and non-technical gaps to achieve project goals.</p>
+                            <h4 class="font-semibold text-white">Team Collaboration</h4>
+                            <p class="text-sm">Enthusiastically contribute to team projects, valuing diverse perspectives to achieve shared goals.</p>
                         </div>
                     </div>
-                    <div class="flex items-center">
-                        <i data-lucide="message-circle" class="w-5 h-5 mr-3 accent-text"></i>
+                    <div class="flex items-start">
+                        <i data-lucide="message-circle" class="w-6 h-6 mr-4 mt-1 accent-text flex-shrink-0"></i>
                         <div>
-                            <h4 class="font-semibold text-white">Technical Communication</h4>
-                            <p class="text-sm">Effectively translates complex technical concepts into clear, actionable insights for diverse audiences.</p>
+                            <h4 class="font-semibold text-white">Effective Communication</h4>
+                            <p class="text-sm">Clearly articulate complex ideas to both technical and non-technical stakeholders.</p>
                         </div>
                     </div>
-                    <div class="flex items-center">
-                        <i data-lucide="trending-up" class="w-5 h-5 mr-3 accent-text"></i>
+                    <div class="flex items-start">
+                        <i data-lucide="lightbulb" class="w-6 h-6 mr-4 mt-1 accent-text flex-shrink-0"></i>
                         <div>
-                            <h4 class="font-semibold text-white">Adaptable & Proactive</h4>
-                            <p class="text-sm">Quickly learns new technologies and takes initiative to drive projects forward and find innovative solutions.</p>
+                            <h4 class="font-semibold text-white">Analytical Problem-Solving</h4>
+                            <p class="text-sm">Break down complex challenges into manageable parts to find logical and efficient solutions.</p>
                         </div>
                     </div>
-                    <div class="flex items-center">
-                        <i data-lucide="target" class="w-5 h-5 mr-3 accent-text"></i>
+                    <div class="flex items-start">
+                        <i data-lucide="trending-up" class="w-6 h-6 mr-4 mt-1 accent-text flex-shrink-0"></i>
                         <div>
-                            <h4 class="font-semibold text-white">Client-Focused Development</h4>
-                            <p class="text-sm">Understands business needs and user requirements to build products that deliver tangible value.</p>
+                            <h4 class="font-semibold text-white">Adaptability & Fast Learning</h4>
+                            <p class="text-sm">Quickly grasp new technologies and concepts, demonstrating a strong desire for continuous growth.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Key Strengths Section -->
+        <section id="strengths" class="py-20 fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center section-title mb-12">Why Me? Key Strengths & Focus</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="layers" class="w-8 h-8 mr-4 accent-text"></i>
+                        <h3 class="text-xl font-semibold text-white">Full-Stack Knowledge</h3>
+                    </div>
+                    <p class="text-gray-400">Building knowledge across the stack, with experience in front-end interfaces, back-end APIs, and databases.</p>
+                </div>
+                <div class="card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="lightbulb" class="w-8 h-8 mr-4 accent-text"></i>
+                        <h3 class="text-xl font-semibold text-white">Innovative Application</h3>
+                    </div>
+                    <p class="text-gray-400">Demonstrated ability to apply emerging technologies like AI/ML to create practical, high-performance applications.</p>
+                </div>
+                <div class="card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="book-marked" class="w-8 h-8 mr-4 accent-text"></i>
+                        <h3 class="text-xl font-semibold text-white">Strong CS Fundamentals</h3>
+                    </div>
+                    <p class="text-gray-400">Deep understanding of Data Structures, Algorithms, and OS principles, ensuring efficient and scalable code.</p>
                 </div>
             </div>
         </section>
@@ -317,37 +318,6 @@
             </div>
         </section>
 
-        <!-- AI Assistant Section -->
-        <section id="ai-assistant" class="py-20 fade-in-section">
-            <h2 class="text-3xl md:text-4xl font-bold text-center section-title mb-4">AI-Powered Career Assistant</h2>
-            <p class="max-w-3xl mx-auto text-lg text-center leading-relaxed mb-12">
-                Let AI help you. These tools use the Gemini API to generate content based on my profile.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                <!-- AI Cover Letter Generator -->
-                <div class="card ai-card rounded-lg p-6">
-                    <h3 class="text-2xl font-bold text-white mb-4">✨ AI Cover Letter Generator</h3>
-                    <p class="mb-4 text-gray-400">Paste a job description below. The AI will analyze my skills and projects to generate a tailored cover letter draft.</p>
-                    <textarea id="job-description" class="w-full h-32 p-2 rounded-md bg-gray-800 border border-gray-600 focus:ring-amber-500 focus:border-amber-500 text-gray-300" placeholder="Paste job description here..."></textarea>
-                    <button id="generate-letter-btn" class="ai-button w-full mt-4 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center">
-                        <span class="btn-text">Generate Cover Letter</span>
-                        <div class="loading-spinner w-5 h-5 border-2 border-gray-500 rounded-full ml-3 hidden"></div>
-                    </button>
-                </div>
-
-                <!-- AI Interview Prep -->
-                <div class="card ai-card rounded-lg p-6">
-                    <h3 class="text-2xl font-bold text-white mb-4">✨ AI Interview Prep</h3>
-                    <p class="mb-4 text-gray-400">Enter a technical skill or concept, and the AI will generate sample interview questions to test my knowledge.</p>
-                    <input type="text" id="interview-topic" class="w-full p-3 rounded-md bg-gray-800 border border-gray-600 focus:ring-amber-500 focus:border-amber-500 text-gray-300" placeholder="e.g., Java, REST APIs, Data Structures...">
-                     <button id="generate-questions-btn" class="ai-button w-full mt-4 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center">
-                        <span class="btn-text">Generate Questions</span>
-                        <div class="loading-spinner w-5 h-5 border-2 border-gray-500 rounded-full ml-3 hidden"></div>
-                    </button>
-                </div>
-            </div>
-        </section>
-
         <!-- Certifications Section -->
         <section id="certifications" class="py-20 fade-in-section">
             <h2 class="text-3xl md:text-4xl font-bold text-center section-title mb-12">Certifications & Learning</h2>
@@ -412,18 +382,6 @@
 
     </main>
 
-    <!-- Modal for AI Generated Content -->
-    <div id="ai-modal" class="fixed inset-0 z-50 items-center justify-center hidden">
-        <div class="modal-backdrop fixed inset-0"></div>
-        <div class="card ai-card rounded-lg p-8 m-4 max-w-3xl w-full relative max-h-[80vh] overflow-y-auto">
-            <h3 id="modal-title" class="text-2xl font-bold text-white mb-4"></h3>
-            <div id="modal-content" class="text-gray-300 leading-relaxed whitespace-pre-wrap"></div>
-            <button id="modal-close-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
-        </div>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -456,171 +414,6 @@
         sections.forEach(section => {
             observer.observe(section);
         });
-
-        // --- AI Assistant Logic ---
-        const generateLetterBtn = document.getElementById('generate-letter-btn');
-        const generateQuestionsBtn = document.getElementById('generate-questions-btn');
-        const jobDescriptionInput = document.getElementById('job-description');
-        const interviewTopicInput = document.getElementById('interview-topic');
-        
-        // Modal elements
-        const aiModal = document.getElementById('ai-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalContent = document.getElementById('modal-content');
-        const modalCloseBtn = document.getElementById('modal-close-btn');
-
-        // --- IMPORTANT: AI ASSISTANT SETUP ---
-        // Your API key has been added below. This feature is now fully functional.
-        const GEMINI_API_KEY = "AIzaSyBJngfVIGjKb_ZqOa4eAF5MUEcXivFmdwE";
-        // ------------------------------------
-
-        // --- Candidate Profile Data (Extracted from the page for the AI) ---
-        const candidateProfile = {
-            name: "Pathan Mahmood Hasan Khan",
-            title: "Full Stack Developer",
-            summary: "A results-driven developer committed to delivering high-impact solutions through innovative and user-centric design. Adept at managing projects, solving complex problems, and collaborating seamlessly across teams. Proficient in leveraging cutting-edge technologies and best practices to optimize processes and elevate overall product performance.",
-            technical_skills: ["C/C++", "Python", "Java", "Go", "SQL", "MERN Stack", "RESTful APIs", "Git", "GitLab", "Jira", "VS Code", "Networking", "Virtualization", "KVM", "BASH Scripting", "Wireshark", "GRE", "DPDK", "YANG"],
-            soft_skills: ["Collaborative Problem-Solving", "Technical Communication", "Adaptable & Proactive", "Client-Focused Development"],
-            projects: {
-                "WebCam Racer": {
-                    description: "Engineered and evaluated an AI-powered game controlled by real-time facial gestures, utilizing MediaPipe's Face Mesh API for hands-free interaction.",
-                    achievement: "Achieved ~91% gesture recognition accuracy with a low latency of ~120ms through rigorous performance tuning."
-                },
-                "Secure Voting System": {
-                    description: "Developed a secure web platform that verifies user identity through face recognition (OpenCV) and fingerprint authentication to ensure data integrity.",
-                    contribution: "Implemented the core face recognition module and contributed to the real-time biometric login flow."
-                },
-                "Autonomous Drones": {
-                    description: "Implemented A* and RRT pathfinding algorithms for autonomous navigation and simulated drone behavior in ROS using sensor data from LiDAR, GPS, and IMU.",
-                    contribution: "Conducted in-depth research on drone autonomy and contributed to the comprehensive system design report."
-                }
-            }
-        };
-
-        // --- Gemini API Call Function ---
-        async function callGemini(prompt, button) {
-            // Check for API Key
-            if (GEMINI_API_KEY === "YOUR_GOOGLE_AI_API_KEY_HERE" || !GEMINI_API_KEY) {
-                showModal(
-                    "API Key Required", 
-                    "To enable this AI feature, you need to add a free Google AI API key.\n\n1. Go to Google AI Studio to get your key.\n2. Open this HTML file in a text editor.\n3. Paste your key into the 'GEMINI_API_KEY' variable near the top of the <script> section."
-                );
-                return null;
-            }
-
-            const btnText = button.querySelector('.btn-text');
-            const spinner = button.querySelector('.loading-spinner');
-            
-            btnText.classList.add('hidden');
-            spinner.classList.remove('hidden');
-            button.disabled = true;
-
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
-            
-            const payload = {
-                contents: [{ role: "user", parts: [{ text: prompt }] }]
-            };
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(`API error (${response.status}): ${errorData.error.message}`);
-                }
-
-                const result = await response.json();
-                
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    return result.candidates[0].content.parts[0].text;
-                } else {
-                    console.error("Unexpected API response structure:", result);
-                    return "Error: Could not generate content due to an unexpected API response.";
-                }
-
-            } catch (error) {
-                console.error("Error calling Gemini API:", error);
-                return `Error: Could not generate content. ${error.message}`;
-            } finally {
-                btnText.classList.remove('hidden');
-                spinner.classList.add('hidden');
-                button.disabled = false;
-            }
-        }
-
-        // --- Event Listeners ---
-        generateLetterBtn.addEventListener('click', async () => {
-            const jobDesc = jobDescriptionInput.value.trim();
-            if (!jobDesc) {
-                showModal("Error", "Please paste a job description first.");
-                return;
-            }
-
-            const prompt = `
-                My name is ${candidateProfile.name}. I am a ${candidateProfile.title}.
-                My professional summary: ${candidateProfile.summary}
-                My key technical skills are: ${candidateProfile.technical_skills.join(', ')}.
-                My key soft skills are: ${candidateProfile.soft_skills.join(', ')}.
-                My projects include: WebCam Racer (${candidateProfile.projects["WebCam Racer"].achievement}), Secure Voting System (${candidateProfile.projects["Secure Voting System"].contribution}), and Autonomous Drones (${candidateProfile.projects["Autonomous Drones"].contribution}).
-
-                Based on my profile, please write a professional and enthusiastic cover letter for the following job description. Connect my specific skills (both technical and soft) and project experiences to the requirements in the job description. Keep it concise, impactful, and address it to the "Hiring Team".
-
-                Job Description:
-                ---
-                ${jobDesc}
-                ---
-            `;
-
-            const generatedText = await callGemini(prompt, generateLetterBtn);
-            if (generatedText) showModal("Generated Cover Letter", generatedText);
-        });
-
-        generateQuestionsBtn.addEventListener('click', async () => {
-            const topic = interviewTopicInput.value.trim();
-            if (!topic) {
-                showModal("Error", "Please enter a technical topic first.");
-                return;
-            }
-
-            const prompt = `
-                Based on the profile of a software developer candidate named ${candidateProfile.name}, please act as a senior technical interviewer.
-
-                The candidate's technical skills include: ${candidateProfile.technical_skills.join(', ')}.
-                The candidate's soft skills include: ${candidateProfile.soft_skills.join(', ')}.
-
-                Generate 3-4 insightful technical interview questions about the following topic: "${topic}". The questions should be appropriate for a talented university student and should test for a solid understanding of fundamental concepts.
-            `;
-            const generatedText = await callGemini(prompt, generateQuestionsBtn);
-            if(generatedText) showModal(`Sample Interview Questions: ${topic}`, generatedText);
-        });
-        
-        // --- Modal Logic ---
-        function showModal(title, content) {
-            modalTitle.textContent = title;
-            modalContent.textContent = content;
-            aiModal.classList.remove('hidden');
-            aiModal.classList.add('flex');
-            lucide.createIcons(); // Re-render icons if any in modal
-        }
-
-        function hideModal() {
-            aiModal.classList.add('hidden');
-            aiModal.classList.remove('flex');
-        }
-
-        modalCloseBtn.addEventListener('click', hideModal);
-        aiModal.addEventListener('click', (e) => {
-            if (e.target.id === 'ai-modal') {
-                hideModal();
-            }
-        });
-
     </script>
 </body>
 </html>
